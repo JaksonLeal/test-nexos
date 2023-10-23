@@ -37,7 +37,7 @@ public class EmpleadoController {
 
 	@DeleteMapping("/{documentoNumero}")
 	public ResponseEntity<?> deleteEmpleado(@PathVariable String documentoNumero) {
-		System.out.println("el id del empleado es: " + documentoNumero);
+		System.out.println("el numero de documento del empleado es: " + documentoNumero);
 		return empleadoService.deleteEmpleado(documentoNumero);
 	}
 

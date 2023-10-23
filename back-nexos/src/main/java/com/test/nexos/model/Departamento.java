@@ -1,10 +1,12 @@
 package com.test.nexos.model;
 
 import java.sql.Date;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,12 +31,14 @@ public class Departamento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(unique = true)
 	private String departamentoCodigo;
 	private String departamentoNombre; 
 	private Date fechaHoraCrea;
 	private Date fechaHoraModifica;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "departamento", cascade = CascadeType.ALL)
-	private Set <Empleado> empleados = new LinkedHashSet<>();
+	private List <Empleado> empleados;
 
 }

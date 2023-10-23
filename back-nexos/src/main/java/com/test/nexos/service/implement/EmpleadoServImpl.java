@@ -65,6 +65,8 @@ public class EmpleadoServImpl implements EmpleadoService {
 						.body(new DepartamentoException("No se pudo eliminar el empleado").getMessage());
 			}
 		} catch (Exception e) {
+			System.out.println(e);
+			
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 					.body(new DepartamentoException("Error al eliminar el empleado").getMessage());
 		}

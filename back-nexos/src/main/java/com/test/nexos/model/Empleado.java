@@ -3,8 +3,7 @@ package com.test.nexos.model;
 
 import java.sql.Date;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -31,6 +30,7 @@ public class Empleado {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String documentoTipo;
+	@Column(unique = true) //unico en la tabla
 	private String documentoNumero;
 	private String nombre;
 	private String apellido;
@@ -41,7 +41,6 @@ public class Empleado {
 	private Date fechaHoraCrea;
 	private Date fechaHoraModifica;
 
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER) //por defecto es fetch = FetchType.EAGER
 	private Departamento departamento;
 }

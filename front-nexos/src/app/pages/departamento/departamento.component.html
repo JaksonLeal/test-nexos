@@ -1,0 +1,23 @@
+<div class="bootstrap-wrapper text-center">
+    <div class="container">
+        <div class="row mt20">
+            <div class="offset-md-3">
+                <h1>Bienvenido al panel de Departamento</h1>
+            </div>
+        </div>
+    </div>
+    <mat-card class="mb20">
+        <mat-toolbar-row>
+            <a [routerLink]="'/departamento/crear'" mat-list-item>
+                Crear
+            </a>
+            <a [routerLink]="'/departamento/listar'" mat-list-item>
+                Listar
+            </a>
+            <a [routerLink]="'/departamento/buscar'" mat-list-item>
+                Buscar
+            </a>
+        </mat-toolbar-row>
+        <router-outlet></router-outlet>
+    </mat-card>
+</div>

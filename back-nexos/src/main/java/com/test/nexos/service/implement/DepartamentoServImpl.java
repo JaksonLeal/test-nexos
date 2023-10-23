@@ -55,7 +55,8 @@ public class DepartamentoServImpl implements DepartamentoService {
 	@Override
 	public ResponseEntity<?> deleteDepartamento(String departamentoCodigo) {
 		try {
-			departamentoRepository.deleteByDepartamentoCodigo(departamentoCodigo);
+			Departamento busqueda = departamentoRepository.findByCodigo(departamentoCodigo);
+			departamentoRepository.delete(busqueda); 
 			Departamento departamentoEliminado = departamentoRepository.findByCodigo(departamentoCodigo);
 			if (departamentoEliminado == null) {
 				return ResponseEntity.status(HttpStatus.OK)
