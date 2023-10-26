@@ -6,18 +6,20 @@
             </div>
         </div>
     </div>
+
     <mat-card class="mb20">
         <mat-toolbar-row>
-            <a [routerLink]="'/departamento/crear'" mat-list-item>
+            <a [routerLink]="'/departamento/crear'" mat-list-item routerLinkActive="activo">
                 Crear
             </a>
-            <a [routerLink]="'/departamento/listar'" mat-list-item>
+            <a [routerLink]="'/departamento/listar'" mat-list-item routerLinkActive="activo">
                 Listar
             </a>
-            <a [routerLink]="'/departamento/buscar'" mat-list-item>
+            <a [routerLink]="'/departamento/buscar'" mat-list-item routerLinkActive="activo">
                 Buscar
             </a>
         </mat-toolbar-row>
+        <mat-divider class="mb20"></mat-divider>
         <router-outlet></router-outlet>
     </mat-card>
 </div>

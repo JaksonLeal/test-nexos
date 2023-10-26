@@ -1,7 +1,7 @@
 import { Empleado } from "./Empleado";
 
 export class Departamento {
-    
+
     public id: number;
     public departamentoCodigo: String;
     public departamentoNombre: String;

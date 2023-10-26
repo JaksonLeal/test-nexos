@@ -12,7 +12,7 @@ import { DepartamentoService } from 'src/app/services/departamento.service';
 export class ListarDepartamentoComponent implements OnInit, OnDestroy {
 
   public displayedColumns: string[] = ['contador', 'departamentoCodigo', 'departamentoNombre', 'acciones'];
-  public dataSource: MatTableDataSource<Departamento, MatTableDataSourcePaginator>;
+  public dataSource: MatTableDataSource<Departamento>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private departamentoService: DepartamentoService) { }
@@ -23,13 +23,11 @@ export class ListarDepartamentoComponent implements OnInit, OnDestroy {
     this.departamentoService.listarDepartamentos().subscribe(
       {
         next: (respuesta) => {
-          console.log(respuesta);
-          this.dataSource = new MatTableDataSource<Departamento>(respuesta);
-          this.dataSource.paginator = this.paginator;
+          this.cargarDataSource(respuesta);
         },
         error: (error) => {
           let mensaje = error.error.text;
-          let verificar = confirm(mensaje);
+          let verificar = confirm(mensaje); // recarga la pagina si no esta montado el servidor
           verificar ? window.location.reload() : this.ngOnDestroy();
         },
         complete: () => {
@@ -37,6 +35,31 @@ export class ListarDepartamentoComponent implements OnInit, OnDestroy {
         }
       }
     );
+  }
+  posicion(departamento: Departamento): number { return this.dataSource.data.findIndex(d => d == departamento); }
+
+  cargarDataSource(departamentos: Departamento[]): void {
+    this.dataSource = new MatTableDataSource<Departamento>(departamentos);
+    this.dataSource.paginator = this.paginator;
+  }
+  editar(departamento: Departamento): void { console.log(departamento); }
+
+  eliminar(departamento: Departamento): void {
+    this.departamentoService.eliminarDepartamento(departamento.departamentoCodigo).subscribe(
+      {
+        next: (respuesta) => {
+          console.log(respuesta);
+        },
+        error: (error) => {
+          alert(error.error.text);
+        },
+        complete: () => {
+          console.log("exitoso");
+        }
+      }
+    );
+    this.dataSource.data.splice(this.posicion(departamento), 1);
+    this.cargarDataSource(this.dataSource.data);
   }
 
 }

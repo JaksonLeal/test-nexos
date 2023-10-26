@@ -20,4 +20,12 @@ export class DepartamentoService {
     return this.http.get<Departamento[]>(baseUrl + this.API);
   }
 
+  public buscarDepartamento(departamentoCodigo: String) {
+    return this.http.get<Departamento>(baseUrl + this.API + "/" + departamentoCodigo);
+  }
+
+  public eliminarDepartamento(departamentoCodigo: String) {
+    return this.http.delete(baseUrl + this.API + "/" + departamentoCodigo);
+  }
+
 }

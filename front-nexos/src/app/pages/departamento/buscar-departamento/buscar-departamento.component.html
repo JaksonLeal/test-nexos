@@ -1,1 +1,30 @@
-<p>buscar-departamento works!</p>
+<div>
+    <form>
+        <input matInput type="number" name="departamentoCodigo" placeholder="Ingrese el codigo del departamento"
+            #departamentoCodigo class="mr10">
+        <button mat-button color="primary" (click)="buscar(departamentoCodigo.value)" type="reset">BUSCAR</button>
+    </form>
+
+    <table class="mb20 mt20">
+        <thead>
+            <tr>
+                <th>CODIGO</th>
+                <th>NOMBRE</th>
+                <th>EMPLEADOS</th>
+                <th>ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf="auxBusqueda">
+                <td>{{departamento.departamentoCodigo}}</td>
+                <td>{{departamento.departamentoNombre}}</td>
+                <td>{{departamento.empleados.length}}
+                </td>
+                <td>
+                    <button mat-button (click)="editar(departamento)">EDITAR</button>
+                    <button mat-button (click)="eliminar(departamento)">ELIMINAR</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
