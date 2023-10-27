@@ -11,8 +11,8 @@ export class Empleado {
     public direccion: String;
     public correoElectronico: String;
     public telefono: String;
-    public fechaHoraCrea: Date;
-    public fechaHoraModifica: Date;
+    public fechaHoraCrea: String;
+    public fechaHoraModifica: String;
     public departamento: Departamento;
 
 }

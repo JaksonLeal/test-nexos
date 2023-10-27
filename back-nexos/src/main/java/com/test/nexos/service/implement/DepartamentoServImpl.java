@@ -1,7 +1,6 @@
 package com.test.nexos.service.implement;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +55,7 @@ public class DepartamentoServImpl implements DepartamentoService {
 	public ResponseEntity<?> deleteDepartamento(String departamentoCodigo) {
 		try {
 			Departamento busqueda = departamentoRepository.findByCodigo(departamentoCodigo);
-			departamentoRepository.delete(busqueda); 
+			departamentoRepository.delete(busqueda);
 			Departamento departamentoEliminado = departamentoRepository.findByCodigo(departamentoCodigo);
 			if (departamentoEliminado == null) {
 				return ResponseEntity.status(HttpStatus.OK)
@@ -76,10 +75,10 @@ public class DepartamentoServImpl implements DepartamentoService {
 		try {
 			List<Departamento> listadoDepartamento = departamentoRepository.findAll();
 			if (!listadoDepartamento.isEmpty()) {
-				List<DepartamentoDTO> listadoDepartamentoDTO = listadoDepartamento.stream()
-						.map(departamento -> modelMapper.map(departamento, DepartamentoDTO.class))
-						.collect(Collectors.toList());
-				return ResponseEntity.status(HttpStatus.OK).body(listadoDepartamentoDTO);
+//				List<DepartamentoDTO> listadoDepartamentoDTO = listadoDepartamento.stream()
+//						.map(departamento -> modelMapper.map(departamento, DepartamentoDTO.class))
+//						.collect(Collectors.toList());
+				return ResponseEntity.status(HttpStatus.OK).body(listadoDepartamento);
 			} else {
 				return ResponseEntity.status(HttpStatus.CONFLICT)
 						.body(new DepartamentoException("No hay departamentos para mostrar").getMessage());

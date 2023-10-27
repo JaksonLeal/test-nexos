@@ -1,6 +1,5 @@
 import { formatDate } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
 import { Departamento } from 'src/app/model/Departamento';
 import { DepartamentoService } from 'src/app/services/departamento.service';
 
@@ -14,7 +13,7 @@ export class CrearDepartamentoComponent implements OnDestroy {
   public departamento: Departamento;
   public fechaActual: String;
 
-  constructor(private departamentoService: DepartamentoService, private router: Router) {
+  constructor(private departamentoService: DepartamentoService) {
     this.departamento = new Departamento();
     this.fechaActual = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
   }

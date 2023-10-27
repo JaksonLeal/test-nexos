@@ -7,6 +7,6 @@ export class Departamento {
     public departamentoNombre: String;
     public fechaHoraCrea: String;
     public fechaHoraModifica: String;
-    public empleados: Empleado[] = [new Empleado()];
+    public empleados: Empleado[];
 
 }

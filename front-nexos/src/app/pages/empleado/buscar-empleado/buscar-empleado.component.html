@@ -1,1 +1,39 @@
-<p>buscar-empleado works!</p>
+<div>
+    <form>
+        <input matInput type="number" name="departamentoCodigo" placeholder="Ingrese el codigo del departamento"
+            #departamentoCodigo class="mr10 col-md-4">
+        <button mat-button color="primary" (click)="buscar(departamentoCodigo.value)" type="reset">BUSCAR</button>
+    </form>
+
+    <table class="mb20 mt20">
+        <thead>
+            <tr>
+                <th>DOCUMENTO</th>
+                <th>NUMERO DOCUMENTO</th>
+                <th>NOMBRE</th>
+                <th>APELLIDO</th>
+                <th>CIUDAD</th>
+                <th>DIRECCION</th>
+                <th>EMAIL</th>
+                <th>TELEFONO</th>
+                <th>ACCION</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf="auxBusqueda">
+                <td>{{empleado.documentoTipo}}</td>
+                <td>{{empleado.documentoNumero}}</td>
+                <td>{{empleado.nombre}}</td>
+                <td>{{empleado.apellido}}</td>
+                <td>{{empleado.ciudad}}</td>
+                <td>{{empleado.direccion}}</td>
+                <td>{{empleado.correoElectronico}}</td>
+                <td>{{empleado.telefono}}</td>
+                <td>
+                    <button mat-button (click)="editar(empleado)">EDITAR</button>
+                    <button mat-button (click)="eliminar(empleado)">ELIMINAR</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

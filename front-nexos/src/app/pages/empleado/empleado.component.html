@@ -7,17 +7,18 @@
         </div>
     </div>
     <mat-card>
-        <mat-toolbar-row>
-            <a [routerLink]="'/empleado/crear'" mat-list-item>
+        <mat-toolbar-row class="mb20">
+            <a [routerLink]="'/empleado/crear'" mat-list-item routerLinkActive="activo">
                 Crear
             </a>
-            <a [routerLink]="'/empleado/listar'" mat-list-item>
+            <a [routerLink]="'/empleado/listar'" mat-list-item routerLinkActive="activo">
                 Listar
             </a>
-            <a [routerLink]="'/empleado/buscar'" mat-list-item>
+            <a [routerLink]="'/empleado/buscar'" mat-list-item routerLinkActive="activo">
                 Buscar
             </a>
         </mat-toolbar-row>
+        <mat-divider class="mb20"></mat-divider>
         <router-outlet></router-outlet>
     </mat-card>
 </div>

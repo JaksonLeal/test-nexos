@@ -23,6 +23,15 @@ table {
     width: 100%;
 }
 
+th {
+    text-align: center !important;
+    font-weight: bold !important;
+}
+
+td {
+    text-align: center !important;
+}
+
 .mt10 {
     margin-top: 10px !important;
 }

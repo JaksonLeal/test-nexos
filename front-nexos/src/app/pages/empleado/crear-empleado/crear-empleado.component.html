@@ -1,1 +1,87 @@
-<p>crear-empleado works!</p>
+<mat-card>
+    <h1>Agregar nuevo departamento</h1>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <form (ngSubmit)="crearEmpleado()">
+
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Tipo de documento</mat-label>
+                    <mat-select [(ngModel)]="empleado.documentoTipo" name="tipoDoc" class="full-width" required
+                        placeholder="Escoja el tipo de documento">
+                        <mat-option value="CC">cedula de ciudadania</mat-option>
+                        <mat-option value="TI">tarjeta de identidad</mat-option>
+                        <mat-option value="PP">pasaporte</mat-option>
+                        <mat-option value="DNI">documento nacional de identidad</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Número de documento</mat-label>
+                    <input matInput [(ngModel)]="empleado.documentoNumero" class="full-width" type="number" required
+                        name="documentoNumero" placeholder="Digite el numero de documento">
+                </mat-form-field>
+
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput [(ngModel)]="empleado.nombre" class="full-width" type="text" name="nombre" required
+                        placeholder="Digite el nombre">
+                </mat-form-field>
+
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Apellido</mat-label>
+                    <input matInput [(ngModel)]="empleado.apellido" class="full-width" type="text" required
+                        name="apellido" placeholder="Digite el apellido">
+                </mat-form-field>
+
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Ciudad</mat-label>
+                    <input matInput [(ngModel)]="empleado.ciudad" class="full-width" type="text" name="ciudad" required
+                        placeholder="Digite ela ciudad de residencia">
+                </mat-form-field>
+
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Direccion</mat-label>
+                    <input matInput [(ngModel)]="empleado.direccion" class="full-width" type="text" required
+                        name="direccion" placeholder="Digite la direccion de residencia">
+                </mat-form-field>
+
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input matInput [(ngModel)]="empleado.correoElectronico" class="full-width" type="text"
+                        name="correoElectronico" required placeholder="Digite la dirrecion de correo electronico">
+                </mat-form-field>
+
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Numero de telefono</mat-label>
+                    <input matInput [(ngModel)]="empleado.telefono" class="full-width" type="number" required
+                        name="telefono" placeholder="Digite el número de telefono">
+                </mat-form-field>
+
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Departamento</mat-label>
+                    <mat-select [(ngModel)]="empleado.departamento.id" class="full-width" required
+                        placeholder="Escoja el departamento en el que va a trabajar" name="departamentoId">
+                        <mat-option *ngFor="let d of departamentos" [value]="d.id">
+                            {{d.id}} - {{d.departamentoNombre}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-divider></mat-divider>
+                <div>
+                    <mat-label>Fecha y hora de creacion: </mat-label>
+                    <strong>{{fechaActual}}</strong>
+                </div>
+                <mat-divider></mat-divider>
+                <div>
+                    <mat-label>Fecha y hora de modificacion: </mat-label>
+                    <strong>{{fechaActual}}</strong>
+                </div>
+                <mat-divider></mat-divider>
+                <div class="container text-center mb20 mt10">
+                    <button mat-raised-button color="primary">Crear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</mat-card>
