@@ -42,7 +42,12 @@ public class DepartamentoController {
 
 	@GetMapping
 	public ResponseEntity<?> listDepartamentos() {
-		System.out.println("entro a listar departamentos");
+		String aux = """
+				el poder
+				ahora es
+				MIO
+				""";
+		System.out.println("entro a listar departamentos %s %s".formatted(aux, "ño"));
 		return departamentoService.listDepartamentos();
 	}
 
