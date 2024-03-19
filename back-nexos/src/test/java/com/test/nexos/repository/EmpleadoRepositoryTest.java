@@ -14,7 +14,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import com.test.nexos.model.Empleado;
 
 @DataJpaTest // sirve para probar componentes solo de la capa de persistencia
-				// o clases con la anotacion @Entity o @Repository
+// o clases con la anotacion @Entity o @Repository
 public class EmpleadoRepositoryTest {
 
 	@Autowired
@@ -46,7 +46,7 @@ public class EmpleadoRepositoryTest {
 				.build();
 	}
 
-	@DisplayName("Test para guardar un empleado") // asigna nombre
+	@DisplayName("Repository Test para guardar un empleado") // asigna nombre
 	@Test // metodologia BDD
 	void testSaveEmpleado() {
 		// given - dado o condicion previa o configuracion
@@ -64,7 +64,7 @@ public class EmpleadoRepositoryTest {
 
 	}
 
-	@DisplayName("Test para listar a los empleados") // asigna nombre
+	@DisplayName("Repository Test para listar a los empleados") // asigna nombre
 	@Test
 	void testListEmpleados() {
 
@@ -84,13 +84,13 @@ public class EmpleadoRepositoryTest {
 		assertThat(listadoEmpleados.size()).isEqualTo(3);
 	}
 
-	@DisplayName("Test para obtener un empleado por cedula") // asigna nombre
+	@DisplayName("Repository Test para obtener un empleado por cedula") // asigna nombre
 	@Test
 	void testGetEmpleadoByDocumentoNumero() {
 		// given
 		empleadoRepository.save(empleado1);
 		// when
-		Optional <Empleado> empleadoResultado = empleadoRepository.findByDocumentoNumero(empleado1.getDocumentoNumero());
+		Optional<Empleado> empleadoResultado = empleadoRepository.findByDocumentoNumero(empleado1.getDocumentoNumero());
 
 		// then
 
@@ -99,16 +99,15 @@ public class EmpleadoRepositoryTest {
 
 	}
 
-	@DisplayName("Test para eliminar un empleado por cedula") // asigna nombre
+	@DisplayName("Repository Test para eliminar un empleado por cedula") // asigna nombre
 	@Test
 	void testDeleteEmpleadoByDocumentoNumero() {
 		// given
 		empleadoRepository.save(empleado1);
 		// when
 		empleadoRepository.deleteByDocumentoNumero(empleado1.getDocumentoNumero());
-		Optional <Empleado> empleadoResultado = empleadoRepository.findByDocumentoNumero(empleado1.getDocumentoNumero());
+		Optional<Empleado> empleadoResultado = empleadoRepository.findByDocumentoNumero(empleado1.getDocumentoNumero());
 		// then
-
 		assertThat(empleadoResultado).isNull();
 
 	}

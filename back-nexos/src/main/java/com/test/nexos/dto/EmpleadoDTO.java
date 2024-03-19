@@ -1,6 +1,7 @@
 package com.test.nexos.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,10 +12,11 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Builder
 public class EmpleadoDTO {
 	
 	private String documentoTipo;
-	private int documentoNumero;
+	private String documentoNumero;
 	private String nombre;
 	private String apellido;
 	private String ciudad;

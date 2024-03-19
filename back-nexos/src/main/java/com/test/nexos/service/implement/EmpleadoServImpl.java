@@ -1,6 +1,7 @@
 package com.test.nexos.service.implement;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -38,9 +39,10 @@ public class EmpleadoServImpl implements EmpleadoService {
 	@Override
 	public ResponseEntity<?> getEmpleadoByDocumentoNumero(String documentoNumero) {
 		try {
-			Empleado empleadoEncontrado = empleadoRepository.findByDocumentoNumero(documentoNumero);
+			Optional<Empleado> empleadoEncontrado = empleadoRepository.findByDocumentoNumero(documentoNumero);
 			if (empleadoEncontrado != null) {
-				EmpleadoDTO empleadoDTO = modelMapper.map(empleadoEncontrado, EmpleadoDTO.class);
+				EmpleadoDTO empleadoDTO = modelMapper.map(empleadoEncontrado,
+						EmpleadoDTO.class);
 				return ResponseEntity.status(HttpStatus.OK).body(empleadoDTO);
 			} else {
 				return ResponseEntity.status(HttpStatus.CONFLICT)
@@ -53,10 +55,10 @@ public class EmpleadoServImpl implements EmpleadoService {
 	}
 
 	@Override
-	public ResponseEntity<?> deleteEmpleado(String documentoNumero) {
+	public ResponseEntity<String> deleteEmpleado(String documentoNumero) {
 		try {
 			empleadoRepository.deleteByDocumentoNumero(documentoNumero);
-			Empleado empleadoEliminado = empleadoRepository.findByDocumentoNumero(documentoNumero);
+			Optional<Empleado> empleadoEliminado = empleadoRepository.findByDocumentoNumero(documentoNumero);
 			if (empleadoEliminado == null) {
 				return ResponseEntity.status(HttpStatus.OK)
 						.body(new DepartamentoException("Empleado eliminado").getMessage());
@@ -66,7 +68,7 @@ public class EmpleadoServImpl implements EmpleadoService {
 			}
 		} catch (Exception e) {
 			System.out.println(e);
-			
+
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 					.body(new DepartamentoException("Error al eliminar el empleado").getMessage());
 		}
@@ -87,6 +89,37 @@ public class EmpleadoServImpl implements EmpleadoService {
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 					.body(new DepartamentoException("Error obtener el listado de empleados").getMessage());
+		}
+	}
+
+	/* TEST LISTAR EMPLEADOS */
+	@Override
+	public ResponseEntity<List<Empleado>> testListEmpleados() {
+		List<Empleado> listadoEmpleado = null;
+		try {
+			listadoEmpleado = empleadoRepository.findAll();
+			if (!listadoEmpleado.isEmpty()) {
+				return ResponseEntity.status(HttpStatus.OK).body(listadoEmpleado);
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	/* TEST PARA OBTENER EMPLEADO POR ID */
+	@Override
+	public ResponseEntity<Optional<Empleado>> testGetEmpleadoByDocumentoNumero(String documentoNumero) {
+		try {
+			Optional<Empleado> empleadoEncontrado = empleadoRepository.findByDocumentoNumero(documentoNumero);
+			if (empleadoEncontrado != null) {
+				return ResponseEntity.status(HttpStatus.OK).body(empleadoEncontrado);
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			return null;
 		}
 	}
 

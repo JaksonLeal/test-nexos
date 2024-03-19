@@ -1,5 +1,7 @@
 package com.test.nexos.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.ResponseEntity;
@@ -25,14 +27,14 @@ public class EmpleadoController {
 
 	@PostMapping("/create")
 	public ResponseEntity<?> createEmpleado(@RequestBody Empleado empleado) {
-		System.out.println("el empleado trae:" + empleado.toString());
+		System.out.println("el empleado trae: " + empleado.toString());
 		return empleadoService.createEmpleado(empleado);
 	}
 
 	@GetMapping("/{documentoNumero}")
-	public ResponseEntity<?> getEmpleadoByDocumentoNumero(@PathVariable String documentoNumero) {
-		System.out.println("el codigo del empleado es: " + documentoNumero);
-		return empleadoService.getEmpleadoByDocumentoNumero(documentoNumero);
+	public ResponseEntity<Optional<Empleado>> getEmpleadoByDocumentoNumero(@PathVariable String documentoNumero) {
+		System.out.println("el codigo del empleado essa: " + documentoNumero);
+		return empleadoService.testGetEmpleadoByDocumentoNumero(documentoNumero);
 	}
 
 	@DeleteMapping("/{documentoNumero}")
