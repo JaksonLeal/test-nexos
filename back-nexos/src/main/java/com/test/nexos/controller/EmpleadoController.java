@@ -32,8 +32,8 @@ public class EmpleadoController {
 	}
 
 	@GetMapping("/{documentoNumero}")
-	public ResponseEntity<Optional<Empleado>> getEmpleadoByDocumentoNumero(@PathVariable String documentoNumero) {
-		System.out.println("el codigo del empleado essa: " + documentoNumero);
+	public ResponseEntity<?> getEmpleadoByDocumentoNumero(@PathVariable String documentoNumero) {
+		System.out.println("el codigo del empleado es: " + documentoNumero);
 		return empleadoService.testGetEmpleadoByDocumentoNumero(documentoNumero);
 	}
 
@@ -46,7 +46,9 @@ public class EmpleadoController {
 	@GetMapping
 	public ResponseEntity<?> listEmpleados() {
 		System.out.println("entro a listar empleados");
-		return empleadoService.listEmpleados();
+		var aux = empleadoService.listEmpleados();
+		System.out.println(aux.getBody().getClass());
+		return aux;
 	}
 
 }

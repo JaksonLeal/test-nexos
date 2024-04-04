@@ -58,8 +58,10 @@ public class EmpleadoServImpl implements EmpleadoService {
 	public ResponseEntity<String> deleteEmpleado(String documentoNumero) {
 		try {
 			empleadoRepository.deleteByDocumentoNumero(documentoNumero);
+			System.out.println("el documento en esi: "+ documentoNumero);
 			Optional<Empleado> empleadoEliminado = empleadoRepository.findByDocumentoNumero(documentoNumero);
-			if (empleadoEliminado == null) {
+			System.out.println(empleadoEliminado.toString());
+			if (empleadoEliminado.isEmpty()) {
 				return ResponseEntity.status(HttpStatus.OK)
 						.body(new DepartamentoException("Empleado eliminado").getMessage());
 			} else {
